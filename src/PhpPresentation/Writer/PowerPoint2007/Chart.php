@@ -1027,6 +1027,11 @@ class Chart extends Slide
             // c:showLeaderLines
             $this->writeElementWithValAttribute($objWriter, 'c:showLeaderLines', $series->hasShowLeaderLines() ? '1' : '0');
 
+            // c:separator
+            if ($series->hasShowSeparator()) {
+                $this->writeElementWithValAttribute($objWriter, 'c:separator', $series->getLabelSeparator());
+            }
+
             $objWriter->endElement();
 
             if ($series->getFill()->getFillType() != Fill::FILL_NONE) {
@@ -1034,6 +1039,15 @@ class Chart extends Slide
                 $objWriter->startElement('c:spPr');
                 // Write fill
                 $this->writeFill($objWriter, $series->getFill());
+
+                //Bar border
+                $objWriter->startElement('a:ln');
+                $objWriter->writeAttribute('w', '950');
+                $objWriter->startElement('a:solidFill');
+                $this->writeElementWithValAttribute($objWriter, 'a:srgbClr', '999999');
+                $objWriter->endElement();
+                $objWriter->endElement();
+
                 // ## c:spPr
                 $objWriter->endElement();
             }
@@ -1238,6 +1252,11 @@ class Chart extends Slide
             // c:showLeaderLines
             $this->writeElementWithValAttribute($objWriter, 'c:showLeaderLines', $series->hasShowLeaderLines() ? '1' : '0');
 
+            // c:separator
+            if ($series->hasShowSeparator()) {
+                $this->writeElementWithValAttribute($objWriter, 'c:separator', $series->getLabelSeparator());
+            }
+
             $objWriter->endElement();
 
             // c:spPr
@@ -1283,7 +1302,7 @@ class Chart extends Slide
 
         // c:gapWidth
         $objWriter->startElement('c:gapWidth');
-        $objWriter->writeAttribute('val', '75');
+        $objWriter->writeAttribute('val', '10');
         $objWriter->endElement();
 
         // c:shape
@@ -1455,6 +1474,11 @@ class Chart extends Slide
             // c:showLeaderLines
             $this->writeElementWithValAttribute($objWriter, 'c:showLeaderLines', $series->hasShowLeaderLines() ? '1' : '0');
 
+            // c:separator
+            if ($series->hasShowSeparator()) {
+                $this->writeElementWithValAttribute($objWriter, 'c:separator', $series->getLabelSeparator());
+            }
+
             $objWriter->endElement();
 
              // c:spPr
@@ -1483,7 +1507,7 @@ class Chart extends Slide
             $coords = ($includeSheet ? 'Sheet1!$' . \PHPExcel_Cell::stringFromColumnIndex($seriesIndex + 1) . '$2:$' . \PHPExcel_Cell::stringFromColumnIndex($seriesIndex + 1) . '$' . (1 + count($axisYData)) : '');
             $this->writeMultipleValuesOrReference($objWriter, $includeSheet, $axisYData, $coords);
             $objWriter->endElement();
-            
+
             $objWriter->endElement();
 
             ++$seriesIndex;
@@ -1658,6 +1682,11 @@ class Chart extends Slide
 
             // c:showLeaderLines
             $this->writeElementWithValAttribute($objWriter, 'c:showLeaderLines', $series->hasShowLeaderLines() ? '1' : '0');
+
+            // c:separator
+            if ($series->hasShowSeparator()) {
+                $this->writeElementWithValAttribute($objWriter, 'c:separator', $series->getLabelSeparator());
+            }
 
             $objWriter->endElement();
 
@@ -2090,7 +2119,7 @@ class Chart extends Slide
             $objWriter->endElement();
 
             $objWriter->endElement();
-            
+
             // c:dLbls
             $objWriter->startElement('c:dLbls');
 

@@ -122,6 +122,20 @@ class Series implements ComparableInterface
     private $labelPosition = 'ctr';
 
     /**
+     * Label separator
+     *
+     * @var string
+     */
+    private $labelSeparator = ', ';
+
+    /**
+     * ShowSeparator
+     *
+     * @var boolean
+     */
+    private $showSeparator = false;
+
+    /**
      * Hash index
      *
      * @var string
@@ -441,6 +455,52 @@ class Series implements ComparableInterface
     public function setLabelPosition($value)
     {
         $this->labelPosition = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get label separator
+     *
+     * @return string
+     */
+    public function getLabelSeparator()
+    {
+        return $this->labelSeparator;
+    }
+
+    /**
+     * Set label separator
+     *
+     * @param  string                           $value
+     * @return \PhpOffice\PhpPowerpoint\Shape\Chart\Series
+     */
+    public function setLabelSeparator($value)
+    {
+        $this->labelSeparator = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get ShowSeparator
+     *
+     * @return boolean
+     */
+    public function hasShowSeparator()
+    {
+        return $this->showSeparator;
+    }
+
+    /**
+     * Set ShowSeparator
+     *
+     * @param  boolean                          $value
+     * @return \PhpOffice\PhpPowerpoint\Shape\Chart\Series
+     */
+    public function setShowSeparator($value)
+    {
+        $this->showSeparator = $value;
 
         return $this;
     }
